@@ -17,12 +17,18 @@
   "icon": "assets/modid/icon.png",
 
   "environment": "client",
+  "entrypoints": {
+    "main": [
+      "net.kaniol.Gathering"
+    ]
+  },
   "mixins": [
-    "modid.mixins.json"
+    "gathering.mixins.json"
   ],
 
   "depends": {
     "fabricloader": ">=0.11.3",
+    "fabric":"*",
     "minecraft": "1.17.x",
     "java": ">=16"
   }
