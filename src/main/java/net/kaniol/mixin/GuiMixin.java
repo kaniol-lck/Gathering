@@ -1,5 +1,7 @@
 package net.kaniol.mixin;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -12,9 +14,9 @@ import net.kaniol.Gathering;
 @Mixin(Gui.class)
 public class GuiMixin {
     
-    @Inject(at = @At("HEAD"), method = "tick")
-    public void tick(CallbackInfo ci){
-        Gathering.print();
+    @Inject(at = @At("HEAD"), method = "render")
+    public void render(PoseStack poseStack, float f, CallbackInfo ci){
+        Gathering.render(poseStack, f);
         Gathering.clear();
     }
 }

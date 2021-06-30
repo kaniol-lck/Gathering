@@ -32,9 +32,8 @@ public abstract class ClientPacketListenerMixin implements ClientGamePacketListe
 		Entity entity = this.level.getEntity(clientboundTakeItemEntityPacket.getItemId());
 		if (entity != null && entity instanceof ItemEntity)
 		{ 
-			ItemEntity itemEntity = (ItemEntity)entity;
-			ItemStack itemStack = itemEntity.getItem();
-			Gathering.addItem(itemStack.getDisplayName(), itemStack.getCount());
+			ItemEntity itemEntity = (ItemEntity) entity;
+			Gathering.addItemStack(itemEntity.getItem());
 		}
 	}
 }
