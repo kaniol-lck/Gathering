@@ -20,6 +20,14 @@ public class ItemPickup {
         return this.countdown;
     }
 
+    public float getAlpha(){
+        if(this.countdown <= 0) return 0.01f;
+        float f = 1 - (float)this.countdown / 200;
+        f = 1 - f * f;
+        if(f<=0.02f) return 0.02f;
+        return f;
+    }
+
     public int getOffset(){
         if (this.index == 0)
             return 0;
@@ -33,7 +41,7 @@ public class ItemPickup {
     }
 
     public void resetCountdown(){
-        this.countdown = 100;
+        this.countdown = 200;
     }
 
     public void resetOffset(){

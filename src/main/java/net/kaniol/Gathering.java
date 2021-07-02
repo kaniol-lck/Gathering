@@ -25,7 +25,7 @@ public class Gathering implements ModInitializer{
         for(int i = 0; i < pickups.size(); i++) {
             ItemPickup itemPickup = pickups.get(i);
             int yoffset = itemPickup.getOffset();
-            renderGathering(poseStack, f, itemPickup.getItemStack(), yoffset);
+            renderGathering(poseStack, f, itemPickup.getItemStack(), yoffset, itemPickup.getAlpha());
             itemPickup.decreaseCountdown();
         }
         while(!pickups.isEmpty() && pickups.get(pickups.size() - 1).getCountDown() <= 0){
@@ -59,9 +59,11 @@ public class Gathering implements ModInitializer{
         
     }
     
-    private static void renderGathering(PoseStack poseStack, float f, ItemStack itemStack, int yoffset){
+    private static void renderGathering(PoseStack poseStack, float f, ItemStack itemStack, int yoffset, float alpha){
         if(itemStack.is(Items.AIR)) return;
         minecraft.getItemRenderer().renderGuiItem(itemStack, 20, 20 + yoffset);
-        minecraft.font.draw(poseStack, new TextComponent(" * " + itemStack.getCount()), 35, 30 + yoffset, Color.WHITE.getRGB());
+        Color color = new Color(1.0f, 1.0f, 1.0f, alpha);
+        minecraft.font.draw(poseStack, new TextComponent(" * " + itemStack.getCount()), 35, 30 + yoffset, color.getRGB());
     }
+    
 }
