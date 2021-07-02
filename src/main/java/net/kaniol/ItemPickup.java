@@ -4,31 +4,56 @@ import net.minecraft.world.item.ItemStack;
 
 public class ItemPickup {
     private ItemStack itemStack;
-    private int countdown = 100;
+    private int countdown = 200;
+    private int index = 0;
+    private int fadeInOffset = 0;
     
     public ItemPickup(ItemStack is){
-        itemStack = is;
+        this.itemStack = is;
     }
 
     public ItemStack getItemStack(){
-        return itemStack;
+        return this.itemStack;
     }
 
     public int getCountDown(){
-        return countdown;
+        return this.countdown;
+    }
+
+    public int getOffset(){
+        if (this.index == 0)
+            return 0;
+        else
+            return this.index * 20 - fadeInOffset;
     }
 
     public void decreaseCountdown(){
-        countdown--;
+        if(this.countdown > 0) this.countdown--;
+        if(this.fadeInOffset > 0) this.fadeInOffset--;
     }
 
     public void resetCountdown(){
-        countdown = 100;
+        this.countdown = 100;
+    }
+
+    public void resetOffset(){
+        this.index = 0;
+        this.fadeInOffset = 0;
+    }
+
+    public void resetFadeInOffset(){
+        this.fadeInOffset = 0;
     }
 
     public void grow(int i){
-        itemStack.grow(i);
+        this.itemStack.grow(i);
         this.resetCountdown();
+        this.resetOffset();
+    }
+
+    public void moveDown(){
+        this.index += 1;
+        this.fadeInOffset =20;
     }
 
 }

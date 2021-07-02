@@ -17,6 +17,5 @@ public class GuiMixin {
     @Inject(at = @At("HEAD"), method = "render")
     public void render(PoseStack poseStack, float f, CallbackInfo ci){
         Gathering.render(poseStack, f);
-        Gathering.clear();
     }
 }
